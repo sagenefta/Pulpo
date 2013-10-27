@@ -9,8 +9,8 @@ ARCHIVO README
 
 2. Clonar respositorio en git hub  https://github.com/sagenefta/Pulpo.git
 
-3.Descargar instalador de x-code
+3. Descargar instalador de x-code
 
-4.Clonar el proyecto en x-code y ejecutarlo
+4. Clonar el proyecto en x-code y ejecutarlo
 
 
