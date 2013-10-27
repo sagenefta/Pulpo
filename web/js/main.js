@@ -48,7 +48,7 @@ $(document).ready(function(){
 
 		//check global variables
 		if(isEmpty === false && notEqual === false && isNotMail === false){
-			form.submit();
+			window.location.href = 'pulpos.php';
 			inputs.val("");
 		}
 
