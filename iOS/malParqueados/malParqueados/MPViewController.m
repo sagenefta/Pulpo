@@ -7,15 +7,37 @@
 //
 
 #import "MPViewController.h"
+#import "MPAppDelegate.h"
+#import <GoogleMaps/GoogleMaps.h>
 
 @interface MPViewController ()
+@property (nonatomic, strong) UIActivityIndicatorView *activityIndicatorView;
 
 @end
 
+
 @implementation MPViewController
 
+{
+    NSArray* _categoryName;
+    NSString* _perfilUser;
+}
+
+- (NSArray *) categoryName
+{
+    return _categoryName;
+}
+
+- (NSString *) perfilUser
+{
+    return _perfilUser;
+}
 - (void)viewDidLoad
 {
+    
+    
+    _categoryName = @[@"Loco Desquiciado", @"Mandril",
+                      @"Atravezado", @"Despistado"];
     
     if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
         
@@ -29,8 +51,34 @@
         
     }
     
+    // Background image
+    UIImageView* backgroundImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"fondoa.jpg"]];
+    [self.view addSubview:backgroundImageView];
+    [self.view sendSubviewToBack:backgroundImageView];
+    
+    
+    // Header logo
+    UIImageView* header = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logofinal.png"]];
+    header.center = CGPointMake(650, 115);
+    [self.view addSubview:header];
+    
+
+   //[self.picker setBackgroundColor:[UIColor grayColor]];
+    _perfilUser =@"Loco Desquiciado";
+    
+    
+    
+    
+    
     [super viewDidLoad];
 	
+}
+
+- (NSMutableDictionary *)locationUser {
+    
+    MPAppDelegate* appDelegate = (MPAppDelegate*)
+    [[UIApplication sharedApplication] delegate];
+    return appDelegate.locationUser;
 }
 
 - (void)didReceiveMemoryWarning
@@ -51,16 +99,26 @@
 }
 
 - (IBAction)SendPhoto:(UIButton *)sender {
-  
+
+   [self.activity startAnimating];
     
-    //NSData *imageData = UIImageJPEGRepresentation("40.jpg",0.2);     //change Image to NSData
     NSData *imageData = UIImageJPEGRepresentation(self.imageView.image, 0.2);
     
     if (imageData != nil)
     {
-        NSString *filenames = [NSString stringWithFormat:@"TextLabel"];      //set name here
-        NSLog(@"%@", filenames);
-        NSString *urlString = @"http://pulpo.comxa.com/recibe.php";
+        NSString *id_user = [NSString stringWithFormat:@"US001"];
+        NSString *category  = _perfilUser;
+        NSString *latitudeNumber =  [[self locationUser] valueForKey:@"Latitude"];
+        NSString *longitudeNumber = [[self locationUser] valueForKey:@"Longitude"];
+        NSString *latitudeString = [NSString stringWithFormat:@"%@", latitudeNumber];
+        NSString *longitudeString = [NSString stringWithFormat:@"%@", longitudeNumber];
+        
+        NSLog(@"id_user %@", id_user);
+        NSLog(@"category %@", category);
+        NSLog(@"latitude %@", latitudeString);
+        NSLog(@"longitude %@", longitudeString);
+        
+        NSString *urlString = @"http://growlapps.w.pw/recibe.php";
         
         NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
         [request setURL:[NSURL URLWithString:urlString]];
@@ -73,9 +131,23 @@
         NSMutableData *body = [NSMutableData data];
         
         [body appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n",boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-        [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"filenames\"\r\n\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
-        [body appendData:[filenames dataUsingEncoding:NSUTF8StringEncoding]];
+        [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"id_user\"\r\n\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
+        [body appendData:[id_user dataUsingEncoding:NSUTF8StringEncoding]];
         
+        [body appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n",boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+        [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"category\"\r\n\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
+        [body appendData:[category dataUsingEncoding:NSUTF8StringEncoding]];
+        
+        
+        [body appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n",boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+        [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"latitude\"\r\n\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
+        [body appendData:[latitudeString dataUsingEncoding:NSUTF8StringEncoding]];
+
+        [body appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n",boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+        [body appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"longitude\"\r\n\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
+        [body appendData:[longitudeString dataUsingEncoding:NSUTF8StringEncoding]];
+
+
         [body appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n",boundary] dataUsingEncoding:NSUTF8StringEncoding]];
         [body appendData:[@"Content-Disposition: form-data; name=\"userfile\"; filename=\".jpg\"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
         
@@ -89,43 +161,15 @@
         NSString *returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
         NSLog(returnString);
         NSLog(@"finish");
-    
         
-    //self.imageViewSend.image = self.imageView.image;
-    /*
-    
-     turning the image into a NSData object
-     getting the image back out of the UIImageView
-     setting the quality to 90
-     
-    NSLog(@"pasa por aki");
-    NSData *imageData = UIImageJPEGRepresentation(self.imageView.image, 90);
-    // setting up the URL to post to
-    NSString *urlString = @"http://pulpo.comxa.com/index.php";
-    
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-	[request setURL:[NSURL URLWithString:urlString]];
-	[request setHTTPMethod:@"POST"];
-	
-	NSString *boundary = @"---------------------------14737809831466499882746641449";
-	NSString *contentType = [NSString stringWithFormat:@"multipart/form-data; boundary=%@", boundary];
-	[request addValue:contentType forHTTPHeaderField:@"Content-Type"];
-	
-	NSMutableData *body = [NSMutableData data];
-	[body appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-	[body appendData:[@"Content-Disposition: form-data; name=\"userfile\"; filename=\".jpg\"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
-	[body appendData:[@"Content-Type: application/octet-stream\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
-	[body appendData:[NSData dataWithData:imageData]];
-	[body appendData:[[NSString stringWithFormat:@"\r\n--%@--\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-	[request setHTTPBody:body];
-	
-	NSData *returnData = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
-	NSString *returnString = [[NSString alloc] initWithData:returnData encoding:NSUTF8StringEncoding];
-	
-    NSLog(returnData);
-    
-	NSLog(returnString);
-*/
+
+        UIImageView* header = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Atras.jpg"]];
+        self.imageView.image =  header.image;
+        [self.activity stopAnimating];
+      
+
+        
+  
     }
 }
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
@@ -142,5 +186,57 @@
     [picker dismissViewControllerAnimated:YES completion:NULL];
     
 }
+
+
+
+- (NSInteger)numberOfComponentsInPickerView:
+(UIPickerView *)pickerView
+{
+    return 1;
+}
+
+- (NSInteger)pickerView:(UIPickerView *)pickerView
+numberOfRowsInComponent:(NSInteger)component
+{
+    return _categoryName.count;
+}
+
+
+-(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row
+      inComponent:(NSInteger)component
+{
+
+    NSLog(@"result %@", _categoryName[row]);
+    _perfilUser =_categoryName[row];
+}
+
+
+- (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(UIView *)view{
+    
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 300, 37)];
+    label.textAlignment = NSTextAlignmentCenter;
+    label.font = [UIFont fontWithName:@"HelveticaNeue-light" size:25];
+    
+    
+    if ([_categoryName [row] isEqualToString:@"Loco Desquiciado"]) {
+        label.backgroundColor = [UIColor redColor];
+        label.textColor = [UIColor whiteColor];
+        label.text = [NSString stringWithFormat:@" %@", _categoryName[row]];
+    }else if ([_categoryName [row] isEqualToString:@"Mandril"]){
+        label.backgroundColor = [UIColor orangeColor];
+        label.textColor = [UIColor whiteColor];
+        label.text = [NSString stringWithFormat:@" %@", _categoryName[row]];
+    }else if ([_categoryName [row] isEqualToString:@"Atravezado"]){
+        label.backgroundColor = [UIColor blueColor];
+        label.textColor = [UIColor whiteColor];
+        label.text = [NSString stringWithFormat:@" %@", _categoryName[row]];
+    }else if ([_categoryName [row] isEqualToString:@"Despistado"]){
+        label.backgroundColor = [UIColor greenColor];
+        label.textColor = [UIColor whiteColor];
+        label.text = [NSString stringWithFormat:@" %@", _categoryName[row]];
+    }
+    return label;
+}
+
 
 @end

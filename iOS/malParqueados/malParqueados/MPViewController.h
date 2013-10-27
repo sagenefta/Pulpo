@@ -7,13 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CoreLocation/CoreLocation.h>
+#import <GoogleMaps/GoogleMaps.h>
 
-@interface MPViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+@interface MPViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate,CLLocationManagerDelegate, UIPickerViewDelegate, UIPickerViewDataSource>
 
 @property (strong, nonatomic) IBOutlet UIImageView *imageView;
-@property (strong, nonatomic) IBOutlet UIImageView *imageViewSend;
 
+@property (strong, nonatomic) IBOutlet UIPickerView *picker;
 - (IBAction)takePhoto:  (UIButton *)sender;
 - (IBAction)SendPhoto:  (UIButton *)sender;
+@property (strong, nonatomic) IBOutlet UIActivityIndicatorView *activity;
 
 @end

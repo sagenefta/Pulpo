@@ -9,11 +9,44 @@
 #import "MPAppDelegate.h"
 
 @implementation MPAppDelegate
+{
+
+    NSMutableDictionary* _locationUser;
+    
+}
+
+- (NSMutableDictionary *)locationUser
+{
+    return _locationUser;
+}
+
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
+    // Implementación key GoogleMaps
+    [GMSServices provideAPIKey:@"AIzaSyAPYs_Jbj1MNk6SlT8XB3UyVx8gXTaVPX4"];
+    [self loadLocation]; //load current user location
+
     return YES;
+}
+
+-(void)loadLocation
+{
+    self.manager = [[CLLocationManager alloc]init];
+    [self.manager startUpdatingLocation];
+    
+    NSMutableDictionary *userLocation = [[NSMutableDictionary alloc]init];
+    NSNumber *latitude  = [NSNumber numberWithFloat:self.manager.location.coordinate.latitude];
+    NSNumber *longitude = [NSNumber numberWithFloat:self.manager.location.coordinate.longitude];
+    
+ 
+    
+    [userLocation setValue:longitude forKey:@"Longitude"];
+    [userLocation setValue:latitude  forKey:@"Latitude"];
+    
+
+    _locationUser = userLocation;
+    
 }
 							
 - (void)applicationWillResignActive:(UIApplication *)application

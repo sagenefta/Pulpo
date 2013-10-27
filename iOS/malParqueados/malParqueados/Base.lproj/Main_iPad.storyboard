@@ -12,40 +12,50 @@
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="VXB-xR-d1N">
-                                <rect key="frame" x="35" y="38" width="298" height="414"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Frente.jpg" id="VXB-xR-d1N">
+                                <rect key="frame" x="209" y="151" width="350" height="381"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="tc5-Xh-1rO">
-                                <rect key="frame" x="171" y="467" width="73" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="tc5-Xh-1rO">
+                                <rect key="frame" x="209" y="804" width="134" height="134"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="TakePhoto">
+                                <state key="normal" image="upload-photo.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="takePhoto:" destination="BYZ-38-t0r" eventType="touchUpInside" id="W1w-wM-x7o"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="obP-II-MpR">
-                                <rect key="frame" x="168" y="505" width="78" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="obP-II-MpR">
+                                <rect key="frame" x="425" y="804" width="134" height="134"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="SendImage">
+                                <state key="normal" image="check.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="SendPhoto:" destination="BYZ-38-t0r" eventType="touchUpInside" id="sjQ-1H-nDD"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="G9Z-MI-x5h">
-                                <rect key="frame" x="414" y="38" width="311" height="414"/>
+                            <pickerView contentMode="scaleToFill" id="QBk-Ud-BYt">
+                                <rect key="frame" x="209" y="529" width="350" height="216"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="naa-HD-CBL"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="GCR-J4-tdP"/>
+                                </connections>
+                            </pickerView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" id="55W-7U-o7F">
+                                <rect key="frame" x="367" y="926" width="37" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
+                                <color key="color" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="activity" destination="55W-7U-o7F" id="cMI-bz-dR2"/>
                         <outlet property="imageView" destination="VXB-xR-d1N" id="EsX-Tr-82e"/>
-                        <outlet property="imageViewSend" destination="G9Z-MI-x5h" id="yXg-kA-iSz"/>
+                        <outlet property="picker" destination="QBk-Ud-BYt" id="qL9-JS-GZx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -53,6 +63,11 @@
             <point key="canvasLocation" x="-311" y="-471"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Frente.jpg" width="500" height="392"/>
+        <image name="check.png" width="300" height="300"/>
+        <image name="upload-photo.png" width="300" height="300"/>
+    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackOpaque"/>
         <simulatedOrientationMetrics key="orientation"/>

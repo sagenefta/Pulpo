@@ -7,9 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <GoogleMaps/GoogleMaps.h>
 
-@interface MPAppDelegate : UIResponder <UIApplicationDelegate>
+@interface MPAppDelegate : UIResponder <UIApplicationDelegate, CLLocationManagerDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
+@property (readonly, nonatomic) NSMutableDictionary* locationUser;
+@property (strong, nonatomic) CLLocationManager * manager;
 
 @end
