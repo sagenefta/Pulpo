@@ -9,17 +9,22 @@ header{background:#65c4da;border-radius:0 0 .5rem .5rem}
 #features .feature img{width:100%}
 #features .feature + .feature{margin-left:2rem}
 #main-content-wrapper{margin-top:-2rem;z-index:2;text-align:center}
+.btn,.sign-in-btn{background:#24ba24;border:none;color:#fff;font-weight:700;padding:.5rem 1rem;margin:1rem 0 0;transition:all .4s ease;text-decoration:none;}
+.btn:hover,.sign-in-btn:hover{background:#20a620}
 .clearfix:before,.clearfix:after,content " ",display table,height 0,overflow hidden,.clearfix:after{clear:both}
 .clearfix{zoom:1}
 .description-wrapper{color:#1e1e1e;width:80%;margin:0 auto;background:#f6f6f6;box-shadow:1px 4px 1px rgba(196,196,196,0.6);padding:1rem;}
 .description-wrapper h2{margin:0;text-transform:uppercase}
 .description-wrapper p{text-align:left}
 .error{border:1px solid #e62a2a;box-shadow:0 0 4px 2px rgba(230,42,42,0.5)}
+.galeria-title-wrapper{margin:0 0 2rem 0;background:#65c4da;padding:1rem;}
+.galeria-title-wrapper a{color:#fff;box-shadow:1px 4px 1px rgba(196,196,196,0.6)}
 .item-wrapper{background:#fff;margin-bottom:2rem;width:30%;display:inline-block;vertical-align:top;padding:1rem;transition:all .4s ease;text-align:center;}
 .item-wrapper:nth-child(3n+2){margin-left:2.4rem;margin-right:2.4rem}
 .item-wrapper:hover{box-shadow:1px 1px 1px rgba(0,0,0,0.5)}
-.item-wrapper figure{overflow:hidden;width:100%;max-height:319px;max-width:319px;margin:0 0 1rem 0}
-.item-wrapper img{width:100%;margin:0 0 0 0}
+.item-wrapper figure{overflow:hidden;width:100%;max-height:309px;max-width:309px;margin:0 0 1rem 0}
+.item-wrapper img{width:100%;margin:0 0 0 0;transition:all .3s ease;}
+.item-wrapper img:hover{width:110%}
 .pabsolute{position:absolute}
 .prelative{position:relative}
 .puppy{max-width:364px;max-height:352px;}
@@ -29,6 +34,4 @@ header{background:#65c4da;border-radius:0 0 .5rem .5rem}
 .sign-in-form-wrapper{top:50%;left:50%;margin-left:-100px;margin-top:-160px;padding:1rem 2rem}
 .sign-in-form label{color:#f6f6f6;display:block;padding:.5rem 0;text-align:left;text-shadow:1px 1px 1px rgba(0,0,0,0.4);font-size:1.2rem;}
 .sign-in-form label input{float:right;width:60%;padding:.2rem}
-.sign-in-btn{background:#24ba24;border:none;color:#fff;font-weight:700;padding:.5rem 1rem;margin:1rem 0 0;transition:all .4s ease;}
-.sign-in-btn:hover{background:#20a620}
 .title{font-weight:700;font-size:2rem;color:#f6f6f6;text-shadow:1px 1px 1px rgba(0,0,0,0.8)}
