@@ -1,0 +1,36 @@
+<mockup version="1.0" skin="sketch" fontFace="Balsamiq Sans" measuredW="999" measuredH="924" mockupW="449" mockupH="924">
+  <controls>
+    <control controlID="0" controlTypeID="com.balsamiq.mockups::iPhone" x="550" y="0" w="449" h="924" measuredW="282" measuredH="573" zOrder="0" locked="false" isInGroup="-1">
+      <controlProperties>
+        <model>IPhone5</model>
+      </controlProperties>
+    </control>
+    <control controlID="1" controlTypeID="com.balsamiq.mockups::PointyButton" x="612" y="179" w="75" h="-1" measuredW="48" measuredH="27" zOrder="1" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Logo</text>
+      </controlProperties>
+    </control>
+    <control controlID="7" controlTypeID="com.balsamiq.mockups::Accordion" x="624" y="221" w="300" h="545" measuredW="150" measuredH="348" zOrder="2" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Incidencia%201%0AIncidencia%202%0AIncidencia%203%0AIncidencia%204%0AIncidencia%205%0AIncidencia%206%0AIncidencia%207%0AIncidencia%208%0AIncidencia%209%0AIncidencia%2010</text>
+      </controlProperties>
+    </control>
+    <control controlID="8" controlTypeID="com.balsamiq.mockups::Image" x="638" y="259" w="95" h="97" measuredW="77" measuredH="79" zOrder="3" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text/>
+      </controlProperties>
+    </control>
+    <control controlID="9" controlTypeID="com.balsamiq.mockups::Map" x="638" y="371" w="272" h="139" measuredW="252" measuredH="222" zOrder="4" locked="false" isInGroup="-1"/>
+    <control controlID="10" controlTypeID="com.balsamiq.mockups::IconLabel" x="846" y="268" w="-1" h="-1" measuredW="64" measuredH="79" zOrder="5" locked="false" isInGroup="-1">
+      <controlProperties>
+        <icon>GeoLocation2Icon%7Cxlarge</icon>
+        <text>Asistir</text>
+      </controlProperties>
+    </control>
+    <control controlID="11" controlTypeID="com.balsamiq.mockups::FieldSet" x="741" y="259" w="98" h="97" measuredW="200" measuredH="170" zOrder="6" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Tipo%20conductor</text>
+      </controlProperties>
+    </control>
+  </controls>
+</mockup>
